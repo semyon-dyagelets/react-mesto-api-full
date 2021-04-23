@@ -1,0 +1,14 @@
+.authorization__button-save {
+    width: 100%;
+    height: 50px;
+    margin-top: 215px;
+    background: #FFFFFF;
+    border-radius: 2px;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.authorization__button-save:hover {
+    opacity: .8;
+}

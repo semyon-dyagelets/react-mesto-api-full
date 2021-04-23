@@ -1,0 +1,13 @@
+.profile__edit-avatar-button {
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    margin: 0;
+    display: none;
+    background: url(../../../images/edit-avatar-icon.svg) center no-repeat;
+    border: none;
+}
+
+.profile__avatar-container:hover .profile__edit-avatar-button{
+    display: block;
+}

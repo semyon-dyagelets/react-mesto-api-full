@@ -1,0 +1,11 @@
+.header__items {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    color: white;
+    list-style: none;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+}
