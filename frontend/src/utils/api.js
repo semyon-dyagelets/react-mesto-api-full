@@ -77,7 +77,7 @@ class API {
     }
 
     deleteCard(_id) {
-        return fetch(`${this._baseURL}/${_id}`, {
+        return fetch(`${this._baseURL}/cards/${_id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -108,7 +108,7 @@ class API {
 }
 
 const api = new API({
-    baseURL: 'http://api.semyon-dyagelets.nomoredomains.club',
+    baseURL: 'https://api.semyon-dyagelets.nomoredomains.club',
 });
 
 export default api;

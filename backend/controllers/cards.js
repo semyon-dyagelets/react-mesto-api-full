@@ -18,15 +18,17 @@ const deleteCardById = (req, res, next) => {
       if (!card.owner.equals(req.user._id)) {
         throw new ForbiddenError('Можно удалять только свои карточки');
       }
-    });
-  Card.findByIdAndRemove(cardId)
-    .orFail(() => {
-      throw new NotFoundError('Карточка с указанным _id не найдена');
+      Card.findByIdAndRemove(cardId)
+        .orFail(() => {
+          throw new NotFoundError('Карточка с указанным _id не найдена');
+        })
+        .then((card) => res.send(card));
     })
-    .then((card) => res.send(card))
     .catch((err) => {
       if (err.name === 'CastError') {
         next(new BadRequestError('Невалидный id'));
+      } else if (err.statusCode === 403) {
+        next(new ForbiddenError('Можно удалять только свои карточки'));
       } else if (err.statusCode === 404) {
         next(new NotFoundError('Карточка с указанным _id не найдена'));
       } else {

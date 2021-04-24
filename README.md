@@ -2,5 +2,5 @@
 Репозиторий для приложения проекта `Mesto`, включающий фронтенд и бэкенд части приложения со следующими возможностями: авторизации и регистрации пользователей, операции с карточками и пользователями. Бэкенд расположен в директории `backend/`, а фронтенд - в `frontend/`. 
   
 *Публичный адрес сервера https://178.154.215.149  
-*Домен https://semyon-dyagelets.nomoredomains.club
-
+*Домен https://semyon-dyagelets.nomoredomains.club  
+*Бэкенд https://api.semyon-dyagelets.nomoredomains.club

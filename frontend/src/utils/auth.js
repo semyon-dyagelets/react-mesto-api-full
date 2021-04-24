@@ -1,4 +1,4 @@
-export const BASE_URL='http://api.semyon-dyagelets.nomoredomains.club';
+export const BASE_URL='https://api.semyon-dyagelets.nomoredomains.club';
 
 const responseCheck = (response) => response.ok ? response.json() : Promise.reject(`Ошибка ${response.status}`);
 

@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-const { JWT_SECRET } = process.env;
+const { NODE_ENV, JWT_SECRET } = process.env;
 const User = require('../models/user');
 const AlreadyExistsError = require('../errors/already-exists-error');
 const AuthorizationError = require('../errors/authorization-error');
@@ -20,7 +20,7 @@ const login = (req, res, next) => {
       res.send({
         token: jwt.sign(
           { _id: user._id },
-          JWT_SECRET,
+          NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret-key',
           { expiresIn: '7d' },
         ),
       });

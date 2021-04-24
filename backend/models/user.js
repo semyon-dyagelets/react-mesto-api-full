@@ -17,7 +17,6 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
-    minlength: 4,
     select: false,
   },
   name: {
@@ -39,7 +38,10 @@ const userSchema = new mongoose.Schema({
     required: false,
     validate: [
       {
-        validator: (value) => isURL(value),
+        validator: (url) => isURL(url, {
+          protocols: ['http', 'https'],
+          require_protocol: true,
+        }),
         message: 'Неверный формат ссылки',
       },
     ],
