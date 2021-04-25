@@ -1,5 +1,6 @@
 const { celebrate, Joi } = require('celebrate');
 const { ObjectId } = require('mongoose').Types;
+const validator = require('validator');
 
 const validateLogin = celebrate({
   body: Joi.object().keys({
@@ -34,7 +35,15 @@ const validateCreateUser = celebrate({
     password: Joi.string().required().min(8),
     name: Joi.string().min(2).max(30),
     about: Joi.string().min(2).max(30),
-    avatar: Joi.string().uri(),
+    avatar: Joi.string().custom((value, helpers) => {
+      if (validator.isURL(value, { require_protocol: true })) {
+        return value;
+      }
+      return helpers.message('Поле должно быть валидным url-адресом');
+    })
+      .messages({
+        'any.required': 'Поле "avatar" должно быть заполнено',
+      }),
   }),
   headers: Joi.object().keys({
     'content-type': Joi.string().valid('application/json').required(),
@@ -54,7 +63,15 @@ const validateUpdateProfile = celebrate({
 
 const validateUpdateAvatar = celebrate({
   body: Joi.object().keys({
-    avatar: Joi.string().required().uri(),
+    avatar: Joi.string().custom((value, helpers) => {
+      if (validator.isURL(value, { require_protocol: true })) {
+        return value;
+      }
+      return helpers.message('Поле должно быть валидным url-адресом');
+    })
+      .messages({
+        'any.required': 'Поле "avatar" должно быть заполнено',
+      }),
   }),
   headers: Joi.object().keys({
     'content-type': Joi.string().valid('application/json').required(),
@@ -85,7 +102,15 @@ const validateDeleteCardById = celebrate({
 const validateCreateCard = celebrate({
   body: Joi.object().keys({
     name: Joi.string().required().min(2).max(30),
-    link: Joi.string().required().uri(),
+    link: Joi.string().custom((value, helpers) => {
+      if (validator.isURL(value, { require_protocol: true })) {
+        return value;
+      }
+      return helpers.message('Поле должно быть валидным url-адресом');
+    })
+      .messages({
+        'any.required': 'Поле "link" должно быть заполнено',
+      }),
   }),
   headers: Joi.object().keys({
     'content-type': Joi.string().valid('application/json').required(),

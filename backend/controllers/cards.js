@@ -15,14 +15,14 @@ const deleteCardById = (req, res, next) => {
   const { cardId } = req.params;
   Card.findById(cardId)
     .then((card) => {
+      if (!card) {
+        throw new NotFoundError('Карточка с указанным _id не найдена');
+      }
       if (!card.owner.equals(req.user._id)) {
         throw new ForbiddenError('Можно удалять только свои карточки');
       }
       Card.findByIdAndRemove(cardId)
-        .orFail(() => {
-          throw new NotFoundError('Карточка с указанным _id не найдена');
-        })
-        .then((card) => res.send(card));
+        .then((deletedCard) => res.send(deletedCard));
     })
     .catch((err) => {
       if (err.name === 'CastError') {

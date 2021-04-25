@@ -24,20 +24,6 @@ const login = (req, res, next) => {
           { expiresIn: '7d' },
         ),
       });
-      // const token = jwt.sign(
-      //   { _id: user._id },
-      //   JWT_SECRET,
-      //   { expiresIn: '7d' },
-      // );
-      // /res.cookie(
-      //   'jwt',
-      //   token, {
-      //     httpOnly: true,
-      //     sameSite: true,
-      //     maxAge: 360000 * 24 * 7,
-      //   },
-      // )
-      // .end();
     })
     .catch(() => {
       next(new AuthorizationError('Неверный пользователь или пароль'));
