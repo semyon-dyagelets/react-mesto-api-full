@@ -63,7 +63,7 @@ const validateUpdateProfile = celebrate({
 
 const validateUpdateAvatar = celebrate({
   body: Joi.object().keys({
-    avatar: Joi.string().custom((value, helpers) => {
+    avatar: Joi.string().required().custom((value, helpers) => {
       if (validator.isURL(value, { require_protocol: true })) {
         return value;
       }
@@ -102,7 +102,7 @@ const validateDeleteCardById = celebrate({
 const validateCreateCard = celebrate({
   body: Joi.object().keys({
     name: Joi.string().required().min(2).max(30),
-    link: Joi.string().custom((value, helpers) => {
+    link: Joi.string().required().custom((value, helpers) => {
       if (validator.isURL(value, { require_protocol: true })) {
         return value;
       }
